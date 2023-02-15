@@ -36,6 +36,14 @@
 #ifndef _BSD_GLOB_H_
 #define	_BSD_GLOB_H_
 
+#include <sys/types.h>
+#include <dirent.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <errno.h>
+
 /* #include <sys/cdefs.h> */
 
 typedef struct {
@@ -53,10 +61,10 @@ typedef struct {
          * and lstat(2).
          */
         void (*gl_closedir)(void *);
-        Direntry_t *(*gl_readdir)(void *);
+        struct dirent *(*gl_readdir)(void *);
         void *(*gl_opendir)(const char *);
-        int (*gl_lstat)(const char *, Stat_t *);
-        int (*gl_stat)(const char *, Stat_t *);
+        int (*gl_lstat)(const char *, struct stat *);
+        int (*gl_stat)(const char *, struct stat *);
 } glob_t;
 
 #define	GLOB_APPEND	0x0001	/* Append to output from previous call. */
