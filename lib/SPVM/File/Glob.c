@@ -47,36 +47,3 @@ int32_t SPVM__File__Glob__glob(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   return e;
 }
-
-/*
-
-static void
-doglob(pTHX_ const char *pattern, int flags)
-{
-    dSP;
-    glob_t pglob;
-    int i;
-    int retval;
-    SV *tmp;
-    {
-	dMY_CXT;
-
-	memset(&pglob, 0, sizeof(glob_t));
-	retval = glob(pattern, flags, errfunc, &pglob);
-	GLOB_ERROR = retval;
-
-	EXTEND(sp, pglob.gl_pathc);
-	for (i = 0; i < pglob.gl_pathc; i++) {
-	    tmp = newSVpvn_flags(pglob.gl_pathv[i], strlen(pglob.gl_pathv[i]),
-				 SVs_TEMP);
-	    TAINT;
-	    SvTAINT(tmp);
-	    PUSHs(tmp);
-	}
-	PUTBACK;
-
-	globfree(&pglob);
-    }
-}
-
-*/
