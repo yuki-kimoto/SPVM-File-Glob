@@ -1,7 +1,7 @@
 #include "spvm_native.h"
 
-#include "bsd_glob.h"
-#include "bsd_glob.c"
+#include "glob.h"
+#include "glob.c"
 
 static const char* FILE_NAME = "File/Glob.c";
 
@@ -20,15 +20,17 @@ int32_t SPVM__File__Glob__glob(SPVM_ENV* env, SPVM_VALUE* stack) {
   void* errfunc = NULL;
   
   memset(&pglob, 0, sizeof(glob_t));
-  int32_t status = bsd_glob(pattern, flags, errfunc, &pglob);
+  
+  int32_t status = glob(pattern, flags, errfunc, &pglob);
   
   int32_t e = 0;
   if (!(status == 0)) {
-    env->die(env, stack, "[System Error]bsd_glob failed:%s. The files specified by the \"%s\" pattern can't be get", env->strerror(env, stack, errno, 0), pattern, __func__, FILE_NAME, __LINE__);
+    env->die(env, stack, "[System Error]glob failed:%s. The files specified by the \"%s\" pattern can't be get", env->strerror(env, stack, errno, 0), pattern, __func__, FILE_NAME, __LINE__);
     e = SPVM_NATIVE_C_CLASS_ID_ERROR_SYSTEM;
   }
   else {
     int32_t paths_length = pglob.gl_pathc;
+    
     void* obj_paths = env->new_string_array(env, stack, paths_length);
     
     for (int i = 0; i < pglob.gl_pathc; i++) {
@@ -41,7 +43,7 @@ int32_t SPVM__File__Glob__glob(SPVM_ENV* env, SPVM_VALUE* stack) {
     stack[0].oval = obj_paths;
   }
   
-  bsd_globfree(&pglob);
+  globfree(&pglob);
   
   return e;
 }
@@ -60,7 +62,7 @@ doglob(pTHX_ const char *pattern, int flags)
 	dMY_CXT;
 
 	memset(&pglob, 0, sizeof(glob_t));
-	retval = bsd_glob(pattern, flags, errfunc, &pglob);
+	retval = glob(pattern, flags, errfunc, &pglob);
 	GLOB_ERROR = retval;
 
 	EXTEND(sp, pglob.gl_pathc);
@@ -73,7 +75,7 @@ doglob(pTHX_ const char *pattern, int flags)
 	}
 	PUTBACK;
 
-	bsd_globfree(&pglob);
+	globfree(&pglob);
     }
 }
 
