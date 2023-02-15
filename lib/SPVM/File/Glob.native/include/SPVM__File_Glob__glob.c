@@ -130,7 +130,7 @@ reallocarray(void *optr, size_t nmemb, size_t size)
     !defined(HAVE_DECL_GLOB_NOMATCH) || HAVE_DECL_GLOB_NOMATCH == 0 || \
     defined(BROKEN_GLOB)
 
-#include "charclass.h"
+#include "SPVM__File_Glob__charclass.h"
 
 #ifdef TILDE
 # undef TILDE

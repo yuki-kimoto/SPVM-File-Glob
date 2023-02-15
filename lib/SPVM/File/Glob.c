@@ -1,7 +1,7 @@
 #include "spvm_native.h"
 
-#include "glob.h"
-#include "glob.c"
+#include "SPVM__File_Glob__glob.h"
+#include "SPVM__File_Glob__glob.c"
 
 static const char* FILE_NAME = "File/Glob.c";
 
