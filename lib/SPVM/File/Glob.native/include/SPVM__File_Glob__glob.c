@@ -58,9 +58,10 @@
  *	Number of matches in the current invocation of glob.
  */
 
-#include "glob.h"
-#include "errno.h"
-#include "stdlib.h"
+#include <errno.h>
+#include <stdlib.h>
+
+#include "SPVM__File_Glob__glob.h"
 
 /*
  * Copy src to string dst of size siz.  At most siz-1 characters
