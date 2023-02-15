@@ -68,8 +68,8 @@
  * will be copied.  Always NUL terminates (unless siz == 0).
  * Returns strlen(src); if retval >= siz, truncation occurred.
  */
-size_t
-strlcpy(char *dst, const char *src, size_t siz)
+static size_t
+my_strlcpy(char *dst, const char *src, size_t siz)
 {
 	char *d = dst;
 	const char *s = src;
@@ -100,8 +100,8 @@ strlcpy(char *dst, const char *src, size_t siz)
  */
 #define MUL_NO_OVERFLOW	((size_t)1 << (sizeof(size_t) * 4))
 
-void *
-reallocarray(void *optr, size_t nmemb, size_t size)
+static void *
+my_reallocarray(void *optr, size_t nmemb, size_t size)
 {
 	if ((nmemb >= MUL_NO_OVERFLOW || size >= MUL_NO_OVERFLOW) &&
 	    nmemb > 0 && SIZE_MAX / nmemb < size) {
@@ -877,7 +877,7 @@ globextend(const Char *path, glob_t *pglob, struct glob_lim *limitp,
 		return(GLOB_NOSPACE);
 	}
 
-	pathv = reallocarray(pglob->gl_pathv, newn, sizeof(*pathv));
+	pathv = my_reallocarray(pglob->gl_pathv, newn, sizeof(*pathv));
 	if (pathv == NULL)
 		goto nospace;
 	if (pglob->gl_pathv == NULL && pglob->gl_offs > 0) {
@@ -889,7 +889,7 @@ globextend(const Char *path, glob_t *pglob, struct glob_lim *limitp,
 	pglob->gl_pathv = pathv;
 
 	if ((pglob->gl_flags & GLOB_KEEPSTAT) != 0) {
-		statv = reallocarray(pglob->gl_statv, newn, sizeof(*statv));
+		statv = my_reallocarray(pglob->gl_statv, newn, sizeof(*statv));
 		if (statv == NULL)
 			goto nospace;
 		if (pglob->gl_statv == NULL && pglob->gl_offs > 0) {
@@ -1049,7 +1049,7 @@ g_opendir(Char *str, glob_t *pglob)
 	char buf[PATH_MAX];
 
 	if (!*str)
-		strlcpy(buf, ".", sizeof buf);
+		my_strlcpy(buf, ".", sizeof buf);
 	else {
 		if (g_Ctoc(str, buf, sizeof(buf)))
 			return(NULL);
