@@ -1,4 +1,4 @@
 # SPVM::File::Glob
 
-SPVM::File::Glob is a SPVM module.
+<a href="https://metacpan.org/pod/SPVM::File::Glob">SPVM::File::Glob</a>
 
