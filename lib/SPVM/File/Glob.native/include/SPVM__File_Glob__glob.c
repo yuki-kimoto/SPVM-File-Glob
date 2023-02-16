@@ -118,7 +118,7 @@ my_reallocarray(void *optr, size_t nmemb, size_t size)
 #include <ctype.h>
 #include <errno.h>
 #include <limits.h>
-#if !defined(_WIN32)
+#if 0
   #include <pwd.h>
 #endif
 #include <stdlib.h>
@@ -410,7 +410,7 @@ globexp2(const Char *ptr, const Char *pattern, glob_t *pglob,
 }
 
 
-#if !defined(_WIN32)
+#if 0
 
 /*
  * expand tilde from the passwd file.
@@ -534,8 +534,10 @@ glob0(const Char *pattern, glob_t *pglob, struct glob_lim *limitp)
 	size_t oldpathc;
 	Char *bufnext, patbuf[PATH_MAX];
 
-#if !defined(_WIN32)
+#if 0
 	qpatnext = globtilde(pattern, patbuf, PATH_MAX, pglob);
+#else
+	qpatnext = pattern;
 #endif
 
 	oldpathc = pglob->gl_pathc;
