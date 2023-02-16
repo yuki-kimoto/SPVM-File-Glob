@@ -15,6 +15,12 @@ int32_t SPVM__File__Glob__glob(SPVM_ENV* env, SPVM_VALUE* stack) {
   }
   char* pattern = (char*)env->get_chars(env, stack, obj_pattern);
   
+#if defined(_WIN32)
+  if (pattern[0] == '~') {
+    return env->die(env, stack, "Windows doesn't support the \"~\" expansion.", __func__, FILE_NAME, __LINE__);
+  }
+#endif
+  
   glob_t pglob;
   int32_t flags = 0;
   void* errfunc = NULL;
