@@ -63,6 +63,11 @@
 
 #include "SPVM__File_Glob__glob.h"
 
+#if defined(_WIN32)
+  #undef S_ISLNK
+  #define S_ISLNK (mode) (0)
+#endif
+
 /*
  * Copy src to string dst of size siz.  At most siz-1 characters
  * will be copied.  Always NUL terminates (unless siz == 0).
