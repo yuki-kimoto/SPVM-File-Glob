@@ -65,7 +65,7 @@
 
 #if defined(_WIN32)
   #undef S_ISLNK
-  #define S_ISLNK (mode) (0)
+  #define S_ISLNK(mode) (0)
 #endif
 
 /*
