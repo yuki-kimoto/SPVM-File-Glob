@@ -164,7 +164,7 @@ my_reallocarray(void *optr, size_t nmemb, size_t size)
 #define	M_MASK		0xffff
 #define	M_ASCII		0x00ff
 
-typedef u_short Char;
+typedef unsigned short Char;
 
 #else
 
