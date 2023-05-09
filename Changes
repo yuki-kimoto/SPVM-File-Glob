@@ -1,6 +1,8 @@
 0.02 2023-05-10
   [License Change]
     * The license is changed to MIT License.
+  [New Features]
+    * The version string can be got.
 0.01 2023-02-15
   [Changes]
     * First release.
