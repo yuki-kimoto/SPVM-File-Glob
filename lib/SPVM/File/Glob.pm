@@ -1,6 +1,6 @@
 package SPVM::File::Glob;
 
-our $VERSION = "0.010";
+our $VERSION = "0.020";
 
 1;
 
