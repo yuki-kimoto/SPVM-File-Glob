@@ -11,12 +11,12 @@ int32_t SPVM__File__Glob__glob(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   void* obj_pattern = stack[0].oval;
   if (!obj_pattern) {
-    return env->die(env, stack, "The $pattern must be defined", __func__, FILE_NAME, __LINE__);
+    return env->die_v2(env, stack, "The $pattern must be defined", __func__, FILE_NAME, __LINE__);
   }
   char* pattern = (char*)env->get_chars(env, stack, obj_pattern);
   
   if (pattern[0] == '~') {
-    return env->die(env, stack, "The \"~\" expansion is not supported", __func__, FILE_NAME, __LINE__);
+    return env->die_v2(env, stack, "The \"~\" expansion is not supported", __func__, FILE_NAME, __LINE__);
   }
   
   glob_t pglob;
@@ -29,7 +29,7 @@ int32_t SPVM__File__Glob__glob(SPVM_ENV* env, SPVM_VALUE* stack) {
   
   int32_t e = 0;
   if (!(status == 0)) {
-    env->die(env, stack, "[System Error]glob failed:%s. The files specified by the \"%s\" pattern can't be get", env->strerror(env, stack, errno, 0), pattern, __func__, FILE_NAME, __LINE__);
+    env->die_v2(env, stack, "[System Error]glob failed:%s. The files specified by the \"%s\" pattern can't be get", __func__, FILE_NAME, __LINE__, env->strerror(env, stack, errno, 0), pattern);
     e = SPVM_NATIVE_C_BASIC_TYPE_ID_ERROR_SYSTEM_CLASS;
   }
   else {
