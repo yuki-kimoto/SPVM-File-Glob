@@ -38,6 +38,24 @@
   #define S_ISLNK(mode) (0)
 #endif
 
+/* Implementation of strnlen for portability */
+static size_t spvm_strnlen(const char *s, size_t maxlen) {
+  const char *p = s;
+  
+  /* Find the null terminator or reach maxlen */
+  while (maxlen > 0 && *p != '\0') {
+    p++;
+    maxlen--;
+  }
+  
+  /* Return the number of characters before the terminator */
+  return (size_t)(p - s);
+}
+
+/* Use the portable implementation */
+#undef strnlen
+#define strnlen spvm_strnlen
+
 /*
  * Copy src to string dst of size siz.  At most siz-1 characters
  * will be copied.  Always NUL terminates (unless siz == 0).
