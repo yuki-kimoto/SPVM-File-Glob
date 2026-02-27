@@ -1,4 +1,8 @@
-0.023 2025-02-24
+0.024 2026-02-27
+  [Changes]
+    * Fix the C language standard: actually changed from GNU99 to C99.
+      (Note: This was previously announced but was not fully applied until this version.)
+0.023 2026-02-24
   [Changes]
     * Change the C language standard from GNU99 to C99 to improve portability.
 0.022 2026-01-30
