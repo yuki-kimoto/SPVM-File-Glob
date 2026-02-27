@@ -28,9 +28,6 @@
  *	Number of matches in the current invocation of glob.
  */
 
-/* Enable GNU and POSIX extensions for Linux (glibc) to use lstat */
-#define _GNU_SOURCE
-
 #include <errno.h>
 #include <stdlib.h>
 
