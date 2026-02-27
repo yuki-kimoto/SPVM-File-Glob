@@ -2,6 +2,6 @@
 # MIT License
 
 class File::Glob {
-  version "0.023";
+  version "0.024";
   native static method glob : string[] ($pattern : string);
 }
