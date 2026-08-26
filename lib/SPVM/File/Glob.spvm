@@ -3,5 +3,11 @@
 
 class File::Glob {
   version "0.024";
-  native static method glob : string[] ($pattern : string);
+  
+  use Sys;
+  
+  static method bsd_glob : string[] ($pattern : string) {
+    return Sys::IO::Glob->bsd_glob($pattern);
+  }
+  
 }

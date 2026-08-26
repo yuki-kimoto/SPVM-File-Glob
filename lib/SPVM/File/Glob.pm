@@ -6,27 +6,27 @@ our $VERSION = "0.024";
 
 =head1 Name
 
-SPVM::File::Glob - The BSD glob Porting
+SPVM::File::Glob - BSD glob
 
 =head1 Description
 
-The File::Glob class of L<SPVM> has a method that is a port of the BSD glob function.
+File::Glob class in L<SPVM> provides BSD glob function.
 
 =head1 Usage
 
   use File::Glob;
   
-  my $files = File::Glob->glob("path/*");
+  my $files = File::Glob->bsd_glob("path/*");
   
-  my $files = File::Glob->glob("path/?oo");
+  my $files = File::Glob->bsd_glob("path/?oo");
 
 =head1 Class Methods
 
-  static method glob : string[] ($pattern : string);
+C<static method bsd_glob : string[] ($pattern : string);>
 
-The L<bsd_glob|https://metacpan.org/pod/File::Glob#bsd_glob> porting.
+Same as L<Sys::IO#bsd_glob|SPVM::Sys::IO/"bsd_glob"> method.
 
-The C<~> expansion is not supported.
+Please use L<Sys#glob|SPVM::Sys/"glob"> method, which provides the same functionality.
 
 =head1 Repository
 
