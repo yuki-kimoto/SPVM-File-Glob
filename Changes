@@ -1,3 +1,10 @@
+0.025 2026-08-26
+  [Requirement Changes]
+    * Require SPVM 0.990196.
+  [Incompatible Changes]
+    * Rename glob method in File::Glob class to bsd_glob and call Sys::IO::Glob#bsd_glob method.
+  [Internal Changes]
+    * Remove building the native class.
 0.024 2026-02-27
   [Changes]
     * Fix the C language standard: actually changed from GNU99 to C99.
