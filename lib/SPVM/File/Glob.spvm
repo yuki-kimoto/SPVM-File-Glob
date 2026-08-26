@@ -2,9 +2,9 @@
 # MIT License
 
 class File::Glob {
-  version "0.024";
+  version "0.025";
   
-  use Sys;
+  use Sys::IO::Glob;
   
   static method bsd_glob : string[] ($pattern : string) {
     return Sys::IO::Glob->bsd_glob($pattern);
